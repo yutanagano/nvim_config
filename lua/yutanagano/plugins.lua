@@ -18,12 +18,24 @@ local plugins = {
     "nvim-lua/plenary.nvim",
     {
 	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate"
+	build = ":TSUpdate",
     },
     {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
-    }
+    },
+
+    -- LSP
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/nvim-cmp",
+    "L3MON4D3/LuaSnip",
+    {
+	"VonHeikemen/lsp-zero.nvim",
+	branch = "v3.x",
+    },
 }
 
 local lazy = require("lazy")
