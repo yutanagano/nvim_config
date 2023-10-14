@@ -17,6 +17,10 @@ local plugins = {
     "folke/lazy.nvim",
     "nvim-lua/plenary.nvim",
     {
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate"
+    },
+    {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
     }
