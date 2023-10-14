@@ -11,5 +11,18 @@ require('mason-lspconfig').setup({
   ensure_installed = { "pylsp", "rust_analyzer" },
   handlers = {
     lsp_zero.default_setup,
+    pylsp = function()
+	require("lspconfig").pylsp.setup({
+	    settings = {
+		pylsp = {
+		    plugins = {
+			rope_autoimport = {
+			    enabled = true
+			}
+		    }    
+		}
+	    }
+	})
+    end,
   },
 })

@@ -36,6 +36,11 @@ local plugins = {
 	"VonHeikemen/lsp-zero.nvim",
 	branch = "v3.x",
     },
+    {
+	"catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000,
+    },
 }
 
 local lazy = require("lazy")
