@@ -1,3 +1,3 @@
-require("yutanagano.plugin_config.telescope")
 require("yutanagano.plugin_config.treesitter")
 require("yutanagano.plugin_config.lsp")
+require("yutanagano.plugin_config.nvim-tree")

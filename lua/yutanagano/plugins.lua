@@ -41,6 +41,13 @@ local plugins = {
 	name = "catppuccin",
 	priority = 1000,
     },
+
+    {
+	"nvim-tree/nvim-tree.lua",
+	dependencies = {
+	    "nvim-tree/nvim-web-devicons",
+	},
+    },
 }
 
 local lazy = require("lazy")
