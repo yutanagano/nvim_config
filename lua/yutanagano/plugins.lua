@@ -15,6 +15,11 @@ vim.opt.rtp:prepend(lazypath)
 -- Install plugins with lazy.nvim
 local plugins = {
     "folke/lazy.nvim",
+    "nvim-lua/plenary.nvim",
+    {
+	"nvim-telescope/telescope.nvim",
+	branch = "0.1.x",
+    }
 }
 
 local lazy = require("lazy")
