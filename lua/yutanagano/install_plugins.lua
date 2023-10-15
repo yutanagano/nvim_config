@@ -14,34 +14,23 @@ vim.opt.rtp:prepend(lazypath)
 
 -- install plugins with lazy.nvim
 local plugins = {
+    -- ensure lazy.nvim is up to date
     "folke/lazy.nvim",
-    "nvim-lua/plenary.nvim",
+
+    -- parsing
     {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
     },
+
+    -- better file navigation
     {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
+	dependencies = {
+	    "nvim-lua/plenary.nvim",
+	},
     },
-
-    -- LSP
-    "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/nvim-cmp",
-    "L3MON4D3/LuaSnip",
-    {
-	"VonHeikemen/lsp-zero.nvim",
-	branch = "v3.x",
-    },
-    {
-	"catppuccin/nvim",
-	name = "catppuccin",
-	priority = 1000,
-    },
-
     {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = {
@@ -49,6 +38,34 @@ local plugins = {
 	},
     },
 
+    -- cmp
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+
+    -- snippets
+    "L3MON4D3/LuaSnip",
+
+    -- lsp
+    {
+	'VonHeikemen/lsp-zero.nvim',
+	branch = 'v3.x',
+	dependencies = {
+	    "neovim/nvim-lspconfig",
+	    "hrsh7th/cmp-nvim-lsp",
+	    "williamboman/mason.nvim",
+	    "williamboman/mason-lspconfig.nvim",
+	},
+    },
+
+    -- colorschemes
+    {
+	"catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000,
+    },
+
+    -- other 
     {
 	"akinsho/toggleterm.nvim",
 	version = "v2.*",

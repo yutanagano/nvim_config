@@ -1,5 +1,6 @@
-require("yutanagano.setup_plugins.telescope")
 require("yutanagano.setup_plugins.treesitter")
-require("yutanagano.setup_plugins.lsp")
+require("yutanagano.setup_plugins.telescope")
 require("yutanagano.setup_plugins.nvim-tree")
+require("yutanagano.setup_plugins.nvim-cmp")
+require("yutanagano.setup_plugins.lsp")
 require("yutanagano.setup_plugins.toggleterm")
