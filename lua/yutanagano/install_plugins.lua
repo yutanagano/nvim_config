@@ -48,6 +48,12 @@ local plugins = {
 	    "nvim-tree/nvim-web-devicons",
 	},
     },
+
+    {
+	"akinsho/toggleterm.nvim",
+	version = "v2.*",
+	config = true,
+    },
 }
 
 local lazy = require("lazy")
