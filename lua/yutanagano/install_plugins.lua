@@ -71,6 +71,10 @@ local plugins = {
 	version = "v2.*",
 	config = true,
     },
+    {
+	"benlubas/molten-nvim",
+	build = ":UpdateRemotePlugins",
+    }
 }
 
 local lazy = require("lazy")
