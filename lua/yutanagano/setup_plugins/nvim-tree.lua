@@ -8,3 +8,7 @@ nvim_tree.setup({
     disable_netrw = true,
     hijack_netrw = true,
 })
+
+-- keybindings
+local api = require("nvim-tree.api")
+vim.keymap.set("n", "<leader>e", api.tree.toggle, opts)

@@ -1,6 +1,5 @@
-require("yutanagano.plugins")
 require("yutanagano.options")
-require("yutanagano.keymaps")
-require("yutanagano.plugin_config")
-
-vim.cmd.colorscheme "catppuccin"
+require("yutanagano.vanilla_nvim_keymaps")
+require("yutanagano.install_plugins")
+require("yutanagano.setup_plugins")
+require("yutanagano.colorscheme")

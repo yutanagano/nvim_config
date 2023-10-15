@@ -1,4 +1,8 @@
-local lsp_zero = require('lsp-zero')
+local status_ok, lsp_zero = pcall(require, 'lsp-zero')
+if not status_ok then
+    print("lsp-zero not found!")
+    return
+end
 
 lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
