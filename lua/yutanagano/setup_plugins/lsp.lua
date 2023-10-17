@@ -39,8 +39,11 @@ mason_lspconfig.setup({
 	    settings = {
 		pylsp = {
 		    plugins = {
-			rope_autoimport = { enabled = true }
-		    }
+			rope_autoimport = { enabled = true },
+			pycodestyle = {
+			    ignore = { "E501", }
+			},
+		    },
 		}
 	    }
 	})
@@ -48,3 +51,9 @@ mason_lspconfig.setup({
 
   },
 })
+
+
+-- keymaps
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
