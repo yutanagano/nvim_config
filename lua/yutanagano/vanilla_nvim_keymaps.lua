@@ -12,3 +12,7 @@ nvim_set_keymap("n", "<C-h>", "<C-w>h", opts)
 nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
 nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
 nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- splitting windows
+vim.keymap.set("n", "<leader>sh", vim.cmd.split, opts)
+vim.keymap.set("n", "<leader>sv", vim.cmd.vsplit, opts)
