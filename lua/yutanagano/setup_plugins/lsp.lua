@@ -41,7 +41,7 @@ mason_lspconfig.setup({
 		    plugins = {
 			rope_autoimport = { enabled = true },
 			pycodestyle = {
-			    ignore = { "E501", }
+			    ignore = { "E501", "E226", }
 			},
 		    },
 		}
