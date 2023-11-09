@@ -1,6 +1,6 @@
 vim.cmd.colorscheme("default")
 
-local my_colorscheme = "catppuccin"
+local my_colorscheme = "gruvbox"
 
 local status_ok, _ = pcall(vim.cmd.colorscheme, my_colorscheme)
 if not status_ok then
