@@ -30,7 +30,7 @@ end)
 
 mason.setup({})
 mason_lspconfig.setup({
-  ensure_installed = { "pylsp", "rust_analyzer", "lua_ls", "texlab", "zk" },
+  ensure_installed = { "pylsp", "rust_analyzer", "lua_ls", "texlab", "marksman" },
   handlers = {
     lsp_zero.default_setup,
     
