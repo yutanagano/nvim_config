@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-   automatic_installation = true,
+   ensure_installed = { "pylsp", "texlab", "marksman", "lua_ls" },
 })
 
 local lspconfig = require("lspconfig")
@@ -21,7 +21,9 @@ lspconfig.pylsp.setup({
 lspconfig.texlab.setup({
    capabilities = capabilities
 })
-lspconfig.marksman.setup({})
+lspconfig.marksman.setup({
+   capabilities = capabilities
+})
 lspconfig.lua_ls.setup({
    capabilities = capabilities,
    on_init = function(client)
