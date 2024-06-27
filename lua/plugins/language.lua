@@ -4,6 +4,10 @@ return {
       build = ":TSUpdate",
    },
    {
+      "numToStr/Comment.nvim",
+      config = true,
+   },
+   {
       "williamboman/mason.nvim",
       lazy = false,
    },
