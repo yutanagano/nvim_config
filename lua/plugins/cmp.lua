@@ -10,5 +10,6 @@ return {
       -- use opts = {} for passing setup options
       -- this is equalent to setup({}) function
    },
-   "hrsh7th/cmp-path"
+   "hrsh7th/cmp-path",
+   "bullets-vim/bullets.vim",
 }
