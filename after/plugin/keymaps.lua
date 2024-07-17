@@ -6,6 +6,8 @@ vim.keymap.set('n', '<leader>g', builtin.git_files, {})
 vim.keymap.set('n', '<leader>/', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+vim.keymap.set('n', 'gj', ':bnext<CR>', {})
+vim.keymap.set('n', 'gk', ':bprev<CR>', {})
 
 -- language and refactoring
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {})
