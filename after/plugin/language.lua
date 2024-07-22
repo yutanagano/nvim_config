@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-   ensure_installed = { "pylsp", "texlab", "marksman", "lua_ls" },
+   ensure_installed = { "pylsp", "texlab", "marksman", "lua_ls", "gopls" },
 })
 
 local lspconfig = require("lspconfig")
@@ -57,3 +57,4 @@ lspconfig.lua_ls.setup({
       Lua = {}
    }
 })
+lspconfig.gopls.setup({})
