@@ -5,3 +5,6 @@ vim.opt.scrolloff = 5
 vim.opt.shiftwidth = 3
 
 vim.opt.spelllang = {"en_gb"}
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
