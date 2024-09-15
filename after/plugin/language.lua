@@ -14,22 +14,19 @@ require("nvim-treesitter.configs").setup({
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-   ensure_installed = { "pylsp", "texlab", "marksman", "lua_ls", "gopls" },
+   ensure_installed = { "pyright", "texlab", "marksman", "lua_ls", "gopls" },
 })
 
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.pylsp.setup({
+lspconfig.pyright.setup({
    capabilities = capabilities,
    settings = {
-      pylsp = {
-	 plugins = {
-	    rope_autoimport = { enabled = true },
-	    pycodestyle = {
-	       ignore = { "E501", "E226", "E203", "W503" }
-	    },
-	 },
+      python = {
+	 analysis = {
+	    typeCheckingMode = "off"
+	 }
       }
    }
 })
@@ -71,4 +68,6 @@ lspconfig.lua_ls.setup({
       Lua = {}
    }
 })
-lspconfig.gopls.setup({})
+lspconfig.gopls.setup({
+   capabilities = capabilities
+})
