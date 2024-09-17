@@ -25,3 +25,6 @@ vim.keymap.set('n', '<leader>p', '"+p', {})
 
 -- spelling
 vim.keymap.set('n', '<leader>s', ':setlocal spell!<CR>', {})
+
+-- markdown table alignment (cursor must be inside table, table must be isolated paragraph)
+vim.keymap.set('n', '<leader>t', 'gaiptm <CR>s|<CR>jV:s/ /-/g<CR>:noh<CR>', { remap = true })
