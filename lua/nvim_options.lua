@@ -10,5 +10,3 @@ vim.opt.spelllang = {"en_gb"}
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
-vim.opt.conceallevel = 2
