@@ -18,6 +18,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- language and refactoring
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {})
+vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, {})
 
 -- yanking and pasting
 vim.keymap.set('', '<leader>y', '"+y', {})
