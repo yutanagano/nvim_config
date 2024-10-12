@@ -14,28 +14,12 @@ require("nvim-treesitter.configs").setup({
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-   ensure_installed = { "pyright", "texlab", "marksman", "lua_ls", "gopls" },
+   ensure_installed = { "lua_ls", "pyright", "texlab", "marksman", "gopls", "rust_analyzer" },
 })
 
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.pyright.setup({
-   capabilities = capabilities,
-   settings = {
-      python = {
-	 analysis = {
-	    typeCheckingMode = "off"
-	 }
-      }
-   }
-})
-lspconfig.texlab.setup({
-   capabilities = capabilities
-})
-lspconfig.marksman.setup({
-   capabilities = capabilities
-})
 lspconfig.lua_ls.setup({
    capabilities = capabilities,
    on_init = function(client)
@@ -68,6 +52,25 @@ lspconfig.lua_ls.setup({
       Lua = {}
    }
 })
+lspconfig.pyright.setup({
+   capabilities = capabilities,
+   settings = {
+      python = {
+	 analysis = {
+	    typeCheckingMode = "off"
+	 }
+      }
+   }
+})
+lspconfig.texlab.setup({
+   capabilities = capabilities
+})
+lspconfig.marksman.setup({
+   capabilities = capabilities
+})
 lspconfig.gopls.setup({
    capabilities = capabilities
+})
+lspconfig.rust_analyzer.setup({
+  capabilities = capabilities
 })
