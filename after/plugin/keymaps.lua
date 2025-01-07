@@ -31,8 +31,8 @@ vim.keymap.set('n', '<leader>s', ':setlocal spell!<CR>', {})
 vim.keymap.set('n', '<leader>t',
   'vip'.. -- select current paragraph
   ':! sed -E "s/-+/-/g"'.. -- replace consecutive dashes with one (make header delimiter line as short as possible)
-  '| sed -E "s/\\| +/\\| /g"'..
-  '| sed -E "s/ +\\|/ \\|/g"'.. -- above two lines remove any unnecessary spaces between column delimiters
+  '| sed -E "s/\\| */\\| /g"'..
+  '| sed -E "s/ *\\|/ \\|/g"'.. -- above two lines remove any unnecessary spaces between column delimiters
   '| column -t -s "|" -o "|"<CR>'.. -- columnise / align markdown table
   'j:s/ /-/g<CR>:noh<CR>k' -- fill header delimiter line back up with dashes
 , {})
