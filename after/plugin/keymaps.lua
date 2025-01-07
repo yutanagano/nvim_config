@@ -28,4 +28,11 @@ vim.keymap.set('n', '<leader>p', '"+p', {})
 vim.keymap.set('n', '<leader>s', ':setlocal spell!<CR>', {})
 
 -- markdown table alignment (cursor must be inside table, table must be isolated paragraph)
-vim.keymap.set('n', '<leader>t', 'gaiptm <CR>s|<CR>', { remap = true })
+vim.keymap.set('n', '<leader>t',
+  'vip'.. -- select current paragraph
+  ':! sed -E "s/-+/-/g"'.. -- replace consecutive dashes with one (make header delimiter line as short as possible)
+  '| sed -E "s/\\| +/\\| /g"'..
+  '| sed -E "s/ +\\|/ \\|/g"'.. -- above two lines remove any unnecessary spaces between column delimiters
+  '| column -t -s "|" -o "|"<CR>'.. -- columnise / align markdown table
+  'j:s/ /-/g<CR>:noh<CR>k' -- fill header delimiter line back up with dashes
+, {})
