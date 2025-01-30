@@ -1,5 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.colorcolumn = "100"
 vim.opt.scrolloff = 5
 
 vim.opt.expandtab = true
