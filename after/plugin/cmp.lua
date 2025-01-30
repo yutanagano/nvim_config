@@ -58,3 +58,6 @@ cmp.setup({
       { name = 'path' },
    })
 })
+
+-- Configuring options for bullets.vim
+vim.g.bullets_outline_levels = {'num', 'std-', 'std*', 'std+'}
