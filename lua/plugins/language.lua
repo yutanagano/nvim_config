@@ -18,5 +18,9 @@ return {
    {
       "neovim/nvim-lspconfig",
       lazy = false,
-   }
+   },
+   {
+     'stevearc/conform.nvim',
+     opts = {},
+   },
 }

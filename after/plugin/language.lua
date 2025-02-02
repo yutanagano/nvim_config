@@ -1,3 +1,4 @@
+-- Tree sitter
 require("nvim-treesitter.configs").setup({
   auto_install = true,
   highlight = {
@@ -12,6 +13,7 @@ require("nvim-treesitter.configs").setup({
   }
 })
 
+-- Mason
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = { "lua_ls", "pyright", "texlab", "marksman", "gopls", "rust_analyzer" },
@@ -38,9 +40,9 @@ lspconfig.lua_ls.setup({
       workspace = {
         checkThirdParty = false,
         library = {
-          vim.env.VIMRUNTIME
+          vim.env.VIMRUNTIME,
           -- Depending on the usage, you might want to add additional paths here.
-          -- "${3rd}/luv/library"
+          -- "${3rd}/luv/library",
           -- "${3rd}/busted/library",
         }
         -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
@@ -73,4 +75,16 @@ lspconfig.gopls.setup({
 })
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities
+})
+
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- You can customize some of the format options for the filetype (:help conform.format)
+    rust = { "rustfmt", lsp_format = "fallback" },
+    -- Conform will run the first available formatter
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+  },
 })
