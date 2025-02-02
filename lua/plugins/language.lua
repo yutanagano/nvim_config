@@ -47,6 +47,7 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "black" },
+				markdown = { "prettierd" },
 			},
 			format_on_save = {
 				-- I recommend these options. See :help conform.format for details.

@@ -33,11 +33,15 @@ local lsp_servers = {
 	marksman = {},
 	gopls = {},
 	rust_analyzer = {},
+	harper_ls = {
+		filetypes = { "text", "markdown", "latex" },
+	},
 }
 
 local formatter_servers = {
 	"stylua",
 	"black",
+	"prettierd",
 }
 
 -- Install all declared servers with Mason
