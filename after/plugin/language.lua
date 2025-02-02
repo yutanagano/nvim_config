@@ -1,90 +1,64 @@
--- Tree sitter
-require("nvim-treesitter.configs").setup({
-  auto_install = true,
-  highlight = {
-    enable = true,
-    disable = function(_, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-  }
-})
+-- Declare LSP servers and formatters to install
 
--- Mason
-require("mason").setup()
+local lsp_servers = {
+	-- server_name = {
+	--   cmd = {},
+	--   filetypes = {},
+	--   capabilities = {},
+	--   settings = {},
+	--   on_init = function(client) end,
+	-- },
+	lua_ls = {
+		settings = {
+			Lua = {
+				completion = {
+					callSnippet = "Replace",
+				},
+				diagnostics = {
+					disable = { "missing-fields" },
+				},
+			},
+		},
+	},
+	pyright = {
+		settings = {
+			python = {
+				analysis = {
+					typeCheckingMode = "off",
+				},
+			},
+		},
+	},
+	texlab = {},
+	marksman = {},
+	gopls = {},
+	rust_analyzer = {},
+}
+
+local formatter_servers = {
+	"stylua",
+	"black",
+}
+
+-- Install all declared servers with Mason
+
+local mason_to_install = vim.tbl_keys(lsp_servers)
+vim.list_extend(mason_to_install, formatter_servers)
+
+require("mason-tool-installer").setup({ ensure_installed = mason_to_install })
+
+-- Set up all LSP servers with Mason and lspconfig
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "pyright", "texlab", "marksman", "gopls", "rust_analyzer" },
-})
-
-local lspconfig = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-lspconfig.lua_ls.setup({
-  capabilities = capabilities,
-  on_init = function(client)
-    local path = client.workspace_folders[1].name
-    if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
-      return
-    end
-
-    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-      runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT'
-      },
-      -- Make the server aware of Neovim runtime files
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME,
-          -- Depending on the usage, you might want to add additional paths here.
-          -- "${3rd}/luv/library",
-          -- "${3rd}/busted/library",
-        }
-        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-        -- library = vim.api.nvim_get_runtime_file("", true)
-      }
-    })
-  end,
-  settings = {
-    Lua = {}
-  }
-})
-lspconfig.pyright.setup({
-  capabilities = capabilities,
-  settings = {
-    python = {
-      analysis = {
-        typeCheckingMode = "off"
-      }
-    }
-  }
-})
-lspconfig.texlab.setup({
-  capabilities = capabilities
-})
-lspconfig.marksman.setup({
-  capabilities = capabilities
-})
-lspconfig.gopls.setup({
-  capabilities = capabilities
-})
-lspconfig.rust_analyzer.setup({
-  capabilities = capabilities
-})
-
-require("conform").setup({
-  formatters_by_ft = {
-    lua = { "stylua" },
-    -- Conform will run multiple formatters sequentially
-    python = { "isort", "black" },
-    -- You can customize some of the format options for the filetype (:help conform.format)
-    rust = { "rustfmt", lsp_format = "fallback" },
-    -- Conform will run the first available formatter
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-  },
+	handlers = {
+		function(server_name)
+			local server_settings = lsp_servers[server_name] or {}
+			server_settings.capabilities =
+				vim.tbl_deep_extend("force", {}, capabilities, server_settings.capabilities or {})
+			require("lspconfig")[server_name].setup(server_settings)
+		end,
+	},
 })
