@@ -1,3 +1,49 @@
+-- Declare LSP servers and formatters to install
+
+local lsp_servers = {
+	-- server_name = {
+	--   cmd = {},
+	--   filetypes = {},
+	--   capabilities = {},
+	--   settings = {},
+	--   on_init = function(client) end,
+	-- },
+	lua_ls = {
+		settings = {
+			Lua = {
+				completion = {
+					callSnippet = "Replace",
+				},
+				diagnostics = {
+					disable = { "missing-fields" },
+				},
+			},
+		},
+	},
+	pyright = {
+		settings = {
+			python = {
+				analysis = {
+					typeCheckingMode = "off",
+				},
+			},
+		},
+	},
+	texlab = {},
+	marksman = {},
+	gopls = {},
+	rust_analyzer = {},
+	harper_ls = {
+		filetypes = { "text", "markdown", "latex" },
+	},
+}
+
+local formatters = {
+	"stylua",
+	"black",
+	"prettierd",
+}
+
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -22,23 +68,40 @@ return {
 		config = true,
 	},
 	{
-		"williamboman/mason.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		lazy = false,
-		config = true,
+		dependencies = {
+			{ "williamboman/mason.nvim", lazy = false, config = true },
+		},
+		opts = function()
+			local mason_to_install = vim.tbl_keys(lsp_servers)
+			vim.list_extend(mason_to_install, formatters)
+			return { ensure_installed = mason_to_install }
+		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
+		dependencies = {
+			{ "neovim/nvim-lspconfig", lazy = false },
+			"hrsh7th/cmp-nvim-lsp",
+			{ "williamboman/mason.nvim", lazy = false, config = true },
+		},
+		opts = function()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			return {
+				handlers = {
+					function(server_name)
+						local server_settings = lsp_servers[server_name] or {}
+						server_settings.capabilities =
+							vim.tbl_deep_extend("force", {}, capabilities, server_settings.capabilities or {})
+						require("lspconfig")[server_name].setup(server_settings)
+					end,
+				},
+			}
+		end,
 	},
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		lazy = false,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		lazy = false,
-	},
-	"hrsh7th/cmp-nvim-lsp",
 	{
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
