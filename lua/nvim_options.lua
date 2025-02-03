@@ -16,7 +16,7 @@ vim.g.python_indent = {
 vim.g.markdown_recommended_style = false
 
 -- spelling
-vim.opt.spelllang = { "en", "en_gb" }
+vim.opt.spelllang = { "en" }
 
 -- fuzzy search
 vim.opt.ignorecase = true
