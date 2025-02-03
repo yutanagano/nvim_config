@@ -13,6 +13,7 @@ vim.g.python_indent = {
 	open_paren = "shiftwidth()",
 	closed_paren_align_last_line = false,
 }
+vim.g.markdown_recommended_style = false
 
 -- spelling
 vim.opt.spelllang = { "en", "en_gb" }
@@ -22,4 +23,4 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- bullets.nvim
-vim.g.bullets_outline_levels = { "num", "std-", "std*", "std+" }
+vim.g.bullets_outline_levels = { "num", "std-" }
