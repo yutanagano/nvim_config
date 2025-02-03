@@ -1,4 +1,5 @@
 return {
+	"tpope/vim-sleuth",
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
