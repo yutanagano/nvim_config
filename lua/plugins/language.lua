@@ -33,14 +33,6 @@ local lsp_servers = {
 	marksman = {},
 	gopls = {},
 	rust_analyzer = {},
-	harper_ls = {
-		filetypes = { "text", "markdown", "latex" },
-		settings = {
-			["harper-ls"] = {
-				userDictPath = vim.fn.stdpath("config") .. "/harper-ls/",
-			},
-		},
-	},
 }
 
 local formatters = {
