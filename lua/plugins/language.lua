@@ -73,33 +73,31 @@ return {
 		dependencies = {
 			{ "williamboman/mason.nvim", lazy = false, config = true },
 		},
-		opts = function()
-			local mason_to_install = vim.tbl_keys(lsp_servers)
-			vim.list_extend(mason_to_install, formatters)
-			return { ensure_installed = mason_to_install }
+		opts = function(_, opts)
+			opts.ensure_installed = opts.ensure_installed or {}
+			vim.list_extend(opts.ensure_installed, vim.tbl_keys(lsp_servers))
+			vim.list_extend(opts.ensure_installed, formatters)
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		dependencies = {
+			{ "williamboman/mason.nvim", lazy = false, config = true },
 			{ "neovim/nvim-lspconfig", lazy = false },
 			"hrsh7th/cmp-nvim-lsp",
-			{ "williamboman/mason.nvim", lazy = false, config = true },
 		},
-		opts = function()
+		opts = function(_, opts)
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-			return {
-				handlers = {
-					function(server_name)
-						local server_settings = lsp_servers[server_name] or {}
-						server_settings.capabilities =
-							vim.tbl_deep_extend("force", {}, capabilities, server_settings.capabilities or {})
-						require("lspconfig")[server_name].setup(server_settings)
-					end,
-				},
-			}
+
+			opts.handlers = opts.handlers or {}
+			table.insert(opts.handlers, function(server_name)
+				local server_settings = lsp_servers[server_name] or {}
+				server_settings.capabilities =
+					vim.tbl_deep_extend("force", {}, capabilities, server_settings.capabilities or {})
+				require("lspconfig")[server_name].setup(server_settings)
+			end)
 		end,
 	},
 	{
