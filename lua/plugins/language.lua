@@ -35,6 +35,11 @@ local lsp_servers = {
 	rust_analyzer = {},
 	harper_ls = {
 		filetypes = { "text", "markdown", "latex" },
+		settings = {
+			["harper-ls"] = {
+				userDictPath = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
+			},
+		},
 	},
 }
 
