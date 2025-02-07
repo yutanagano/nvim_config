@@ -17,6 +17,12 @@ vim.g.markdown_recommended_style = false -- prevents markdown indent being overr
 
 -- spelling
 vim.opt.spelllang = { "en" }
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "markdown", "latex" },
+	callback = function()
+		vim.opt_local.spell = true
+	end,
+})
 
 -- fuzzy search
 vim.opt.ignorecase = true
