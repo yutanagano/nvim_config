@@ -28,6 +28,7 @@ vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
 
 -- spelling
 vim.keymap.set("n", "<leader>s", ":setlocal spell!<CR>", { desc = "Toggle spelling" })
+vim.keymap.set("n", "zs", "1z=", { desc = "Replace spelling with top suggestion" })
 
 -- ui
 vim.keymap.set("n", "<leader>c", function()

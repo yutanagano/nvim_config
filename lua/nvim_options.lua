@@ -1,7 +1,9 @@
+local textwidth = 100
+
 -- ui
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = tostring(textwidth)
 vim.opt.scrolloff = 5
 
 -- indent
@@ -18,9 +20,10 @@ vim.g.markdown_recommended_style = false -- prevents markdown indent being overr
 -- spelling
 vim.opt.spelllang = { "en" }
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown", "markdown", "latex" },
+	pattern = { "text", "markdown", "latex" },
 	callback = function()
 		vim.opt_local.spell = true
+		-- vim.opt_local.textwidth = textwidth
 	end,
 })
 
