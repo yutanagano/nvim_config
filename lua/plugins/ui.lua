@@ -6,14 +6,11 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
-		opts = {
-			extensions = {
-				["ui-select"] = {
-					require("telescope.themes").get_cursor(),
-				},
-			},
-		},
 		config = function(_, opts)
+			opts.extensions = opts.extensions or {}
+			opts.extensions["ui-select"] = {
+				require("telescope.themes").get_cursor(),
+			}
 			require("telescope").setup(opts)
 			require("telescope").load_extension("ui-select")
 		end,
