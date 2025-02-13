@@ -15,7 +15,6 @@ vim.g.python_indent = {
 	open_paren = "shiftwidth()",
 	closed_paren_align_last_line = false,
 }
-vim.g.markdown_recommended_style = false -- prevents markdown indent being overriden to 4 spaces
 
 -- spelling
 vim.opt.spelllang = { "en" }
