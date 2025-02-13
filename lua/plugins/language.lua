@@ -37,7 +37,7 @@ local lsp_servers = {
 
 local formatters = {
 	"stylua",
-	"black",
+	"ruff",
 	"prettierd",
 }
 
@@ -104,7 +104,7 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "black" },
+				python = { "ruff_format" },
 				markdown = { "prettierd" },
 			},
 			format_on_save = {
