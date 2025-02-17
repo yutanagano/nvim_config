@@ -22,9 +22,8 @@ return {
 					["@markup.heading.3.markdown"] = { fg = theme.syn.string, bold = true },
 					["@markup.heading.4.markdown"] = { fg = theme.syn.type, bold = true },
 					-- ["@lsp.type.class.markdown"] = { fg = theme.syn.fun },
-					LineNr = { fg = theme.syn.constant },
-					LineNrAbove = { fg = theme.ui.nontext },
-					LineNrBelow = { fg = theme.ui.nontext },
+					LineNr = { fg = theme.ui.nontext },
+					CursorLineNr = { fg = theme.syn.constant },
 				}
 			end
 		end,
