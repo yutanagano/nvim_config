@@ -15,4 +15,18 @@ return {
 			require("telescope").load_extension("ui-select")
 		end,
 	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		keys = {
+			{
+				"<leader>j",
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+		},
+		config = true,
+	},
 }
