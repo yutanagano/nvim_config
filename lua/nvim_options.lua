@@ -18,7 +18,7 @@ vim.g.python_indent = {
 -- spelling
 vim.opt.spelllang = { "en" }
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "text", "markdown", "latex" },
+	pattern = { "markdown", "latex" },
 	callback = function()
 		vim.opt_local.spell = true
 		-- vim.opt_local.textwidth = textwidth
