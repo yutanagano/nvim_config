@@ -9,6 +9,8 @@ vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definition(s)
 vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Go to reference(s)" })
 vim.keymap.set("n", "gl", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "gh", ":bprev<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "gj", "<c-d>zz", { desc = "Scroll down" })
+vim.keymap.set("n", "gk", "<c-u>zz", { desc = "Scroll up" })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "netrw",
 	callback = function()
