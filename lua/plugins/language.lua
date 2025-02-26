@@ -33,6 +33,7 @@ local lsp_servers = {
 	marksman = {},
 	gopls = {},
 	rust_analyzer = {},
+	html = {},
 }
 
 local formatters = {
