@@ -30,7 +30,15 @@ local lsp_servers = {
 		},
 	},
 	texlab = {},
-	marksman = {},
+	markdown_oxide = {
+		capabilities = {
+			workspace = {
+				didChangeWatchedFiles = {
+					dynamicRegistration = true,
+				},
+			},
+		},
+	},
 	gopls = {},
 	rust_analyzer = {},
 	html = {},
