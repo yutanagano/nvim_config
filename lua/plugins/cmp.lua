@@ -78,10 +78,14 @@ return {
 			})
 
 			opts.sources = cmp.config.sources({
-				{ name = "nvim_lsp", option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } } },
-				{ name = "luasnip" },
-				{ name = "path" },
 				{ name = "lazydev", group_index = 0 }, -- set group index to 0 to skip loading LuaLS completions
+				{ name = "luasnip", group_index = 1 },
+				{
+					name = "nvim_lsp",
+					group_index = 1,
+					option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } },
+				},
+				{ name = "path", group_index = 1 },
 				{ name = "copilot", group_index = 2 },
 			})
 		end,
