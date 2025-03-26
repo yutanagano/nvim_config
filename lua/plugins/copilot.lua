@@ -1,6 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
+		enabled = false,
 		cmd = "Copilot",
 		event = "InsertEnter",
 		opts = {
@@ -10,6 +11,7 @@ return {
 	},
 	{
 		"zbirenbaum/copilot-cmp",
+		enabled = false,
 		config = true,
 	},
 }
