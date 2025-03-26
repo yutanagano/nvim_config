@@ -14,6 +14,43 @@ return {
 			require("telescope").setup(opts)
 			require("telescope").load_extension("ui-select")
 		end,
+		keys = {
+			{
+				"<leader>f",
+				require("telescope.builtin").find_files,
+				desc = "Find files",
+			},
+			{
+				"<leader>g",
+				require("telescope.builtin").git_files,
+				desc = "Find git files",
+			},
+			{
+				"<leader>/",
+				require("telescope.builtin").live_grep,
+				desc = "Grep workspace",
+			},
+			{
+				"<leader>b",
+				require("telescope.builtin").buffers,
+				desc = "Find buffers",
+			},
+			{
+				"<leader>d",
+				require("telescope.builtin").diagnostics,
+				desc = "List diagnostics",
+			},
+			{
+				"gd",
+				require("telescope.builtin").lsp_definitions,
+				desc = "Go to definition(s)",
+			},
+			{
+				"gr",
+				require("telescope.builtin").lsp_references,
+				desc = "Go to reference(s)",
+			},
+		},
 	},
 	{
 		"folke/flash.nvim",
