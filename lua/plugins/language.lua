@@ -116,10 +116,10 @@ return {
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				markdown = { "prettierd" },
+				html = { lsp_format = "never" },
 			},
+			default_format_opts = { lsp_format = "fallback" },
 			format_on_save = {
-				-- I recommend these options. See :help conform.format for details.
-				lsp_format = "fallback",
 				timeout_ms = 500,
 			},
 		},
