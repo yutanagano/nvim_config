@@ -42,6 +42,7 @@ local lsp_servers = {
 	gopls = {},
 	rust_analyzer = {},
 	superhtml = {},
+	ts_ls = {},
 }
 
 local formatters = {
@@ -116,6 +117,7 @@ return {
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				markdown = { "prettierd" },
+				javascript = { "prettierd" },
 			},
 			default_format_opts = { lsp_format = "fallback" },
 			format_on_save = {
