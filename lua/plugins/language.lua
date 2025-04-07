@@ -43,6 +43,7 @@ local lsp_servers = {
 	rust_analyzer = {},
 	superhtml = {},
 	ts_ls = {},
+	cssls = {},
 }
 
 local formatters = {
@@ -118,6 +119,7 @@ return {
 				python = { "ruff_format" },
 				markdown = { "prettierd" },
 				javascript = { "prettierd" },
+				css = { "prettierd" },
 			},
 			default_format_opts = { lsp_format = "fallback" },
 			format_on_save = {
