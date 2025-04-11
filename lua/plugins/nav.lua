@@ -17,37 +17,51 @@ return {
 		keys = {
 			{
 				"<leader>f",
-				require("telescope.builtin").find_files,
+				function()
+					require("telescope.builtin").find_files()
+				end,
 				desc = "Find files",
 			},
 			{
 				"<leader>g",
-				require("telescope.builtin").git_files,
+				function()
+					require("telescope.builtin").git_files()
+				end,
 				desc = "Find git files",
 			},
 			{
 				"<leader>/",
-				require("telescope.builtin").live_grep,
+				function()
+					require("telescope.builtin").live_grep()
+				end,
 				desc = "Grep workspace",
 			},
 			{
 				"<leader>b",
-				require("telescope.builtin").buffers,
+				function()
+					require("telescope.builtin").buffers()
+				end,
 				desc = "Find buffers",
 			},
 			{
 				"<leader>d",
-				require("telescope.builtin").diagnostics,
+				function()
+					require("telescope.builtin").diagnostics()
+				end,
 				desc = "List diagnostics",
 			},
 			{
 				"gd",
-				require("telescope.builtin").lsp_definitions,
+				function()
+					require("telescope.builtin").lsp_definitions()
+				end,
 				desc = "Go to definition(s)",
 			},
 			{
 				"gr",
-				require("telescope.builtin").lsp_references,
+				function()
+					require("telescope.builtin").lsp_references()
+				end,
 				desc = "Go to reference(s)",
 			},
 		},
