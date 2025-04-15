@@ -120,6 +120,7 @@ return {
 				markdown = { "prettierd" },
 				javascript = { "prettierd" },
 				css = { "prettierd" },
+				scss = { "prettierd" },
 			},
 			default_format_opts = { lsp_format = "fallback" },
 			format_on_save = {
