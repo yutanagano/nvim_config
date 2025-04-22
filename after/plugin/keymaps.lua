@@ -24,15 +24,3 @@ vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
 -- spelling
 vim.keymap.set("n", "<leader>s", ":setlocal spell!<CR>", { desc = "Toggle spelling" })
 vim.keymap.set("n", "zs", "1z=", { desc = "Replace spelling with top suggestion" })
-
--- ui
-vim.keymap.set("n", "<leader>c", function()
-	local current_bg = vim.o.background or "dark"
-
-	if current_bg == "dark" then
-		vim.o.background = "light"
-		return
-	end
-
-	vim.o.background = "dark"
-end, { desc = "Toggle dark / light mode" })
