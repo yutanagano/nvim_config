@@ -1,10 +1,7 @@
-local textwidth = 100
-
 -- ui
 vim.opt.number = true
-vim.opt.colorcolumn = tostring(textwidth)
 vim.opt.scrolloff = 10
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
 
 -- indent
 vim.opt.expandtab = true
