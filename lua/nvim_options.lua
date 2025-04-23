@@ -1,6 +1,8 @@
 -- ui
 vim.opt.number = true
 vim.opt.scrolloff = 10
+vim.diagnostic.config({ float = { border = "rounded" } })
+-- vim.opt.winborder = "rounded"
 -- vim.opt.cursorline = true
 
 -- indent
