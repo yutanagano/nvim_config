@@ -48,8 +48,8 @@ return {
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = {
 				preset = "default",
-				["<C-l>"] = { "snippet_forward", "fallback" },
-				["<C-h>"] = { "snippet_backward", "fallback" },
+				-- ["<C-l>"] = { "snippet_forward" },
+				-- ["<C-h>"] = { "snippet_backward" },
 			},
 
 			appearance = {
@@ -67,7 +67,7 @@ return {
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
 
-			-- snippets = { preset = "luasnip" },
+			snippets = { preset = "luasnip" },
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
 			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
