@@ -94,17 +94,13 @@ return {
 		dependencies = {
 			{ "williamboman/mason.nvim", lazy = false, config = true },
 			{ "neovim/nvim-lspconfig", lazy = false },
-			"hrsh7th/cmp-nvim-lsp",
+			"saghen/blink.cmp",
 		},
 		opts = function(_, opts)
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
 			opts.handlers = opts.handlers or {}
 			table.insert(opts.handlers, function(server_name)
 				local server_settings = lsp_servers[server_name] or {}
-				server_settings.capabilities =
-					vim.tbl_deep_extend("force", {}, capabilities, server_settings.capabilities or {})
+				server_settings.capabilities = require("blink.cmp").get_lsp_capabilities(server_settings.capabilities)
 				require("lspconfig")[server_name].setup(server_settings)
 			end)
 		end,
