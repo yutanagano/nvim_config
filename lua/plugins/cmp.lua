@@ -24,8 +24,9 @@ return {
 		opts = {
 			keymap = {
 				preset = "default",
-				-- ["<C-l>"] = { "snippet_forward" },
-				-- ["<C-h>"] = { "snippet_backward" },
+				["<Tab>"] = {},
+				["<C-l>"] = { "snippet_forward" },
+				["<C-h>"] = { "snippet_backward" },
 			},
 			completion = {
 				documentation = {
