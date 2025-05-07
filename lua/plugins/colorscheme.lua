@@ -1,4 +1,10 @@
 return {
+	-- {
+	-- 	"vague2k/vague.nvim",
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme vague")
+	-- 	end,
+	-- },
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
@@ -29,18 +35,18 @@ return {
 					},
 				},
 			}
-			opts.overrides = function(colors)
-				local theme = colors.theme
-				return {
-					["@markup.list.markdown"] = { fg = theme.syn.special2 },
-					["@markup.heading.markdown"] = { fg = theme.syn.identifier, bold = true },
-					["@markup.heading.2.markdown"] = { fg = theme.syn.identifier, bold = true },
-					["@markup.heading.3.markdown"] = { fg = theme.syn.string, bold = true },
-					["@markup.heading.4.markdown"] = { fg = theme.syn.type, bold = true },
-					["@lsp.type.decorator.markdown"] = { fg = theme.syn.special1 },
-					-- BlinkCmpMenuBorder = { link = "FloatBorder" },
-				}
-			end
+			-- opts.overrides = function(colors)
+			-- 	local theme = colors.theme
+			-- 	return {
+			-- 		["@markup.list.markdown"] = { fg = theme.syn.special2 },
+			-- 		["@markup.heading.markdown"] = { fg = theme.syn.identifier, bold = true },
+			-- 		["@markup.heading.2.markdown"] = { fg = theme.syn.identifier, bold = true },
+			-- 		["@markup.heading.3.markdown"] = { fg = theme.syn.string, bold = true },
+			-- 		["@markup.heading.4.markdown"] = { fg = theme.syn.type, bold = true },
+			-- 		["@lsp.type.decorator.markdown"] = { fg = theme.syn.special1 },
+			-- 		-- BlinkCmpMenuBorder = { link = "FloatBorder" },
+			-- 	}
+			-- end
 		end,
 		config = function(_, opts)
 			require("kanagawa").setup(opts)
