@@ -3,8 +3,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.diagnostic.config({ float = { border = "rounded" } })
--- vim.opt.winborder = "rounded"
--- vim.opt.cursorline = true
 
 -- indent
 vim.opt.expandtab = true
@@ -15,6 +13,7 @@ vim.g.python_indent = {
 	open_paren = "shiftwidth()",
 	closed_paren_align_last_line = false,
 }
+vim.g.markdown_recommended_style = false
 
 -- spelling
 vim.opt.spelllang = { "en" }
