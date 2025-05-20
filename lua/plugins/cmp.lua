@@ -1,6 +1,6 @@
 return {
 	"tpope/vim-sleuth",
-	"bullets-vim/bullets.vim",
+	{ "bullets-vim/bullets.vim", enabled = false },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
