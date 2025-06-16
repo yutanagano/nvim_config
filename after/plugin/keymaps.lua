@@ -43,8 +43,48 @@ end, {
 })
 
 -- spelling
+local function add_to_user_dict(word)
+	local spellfile_path = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+	vim.ui.select(
+		{ "Yes", "No" },
+		{ prompt = 'Would you like to add "' .. word .. '" to your user dictionary?' },
+		function(choice)
+			if choice == "Yes" then
+				local spellfile = io.open(spellfile_path, "a")
+				if spellfile then
+					spellfile:write(word)
+					spellfile:close()
+				else
+					vim.notify("User spellfile not found.", vim.log.levels.ERROR)
+					return
+				end
+
+				local sorted = vim.fn.system("sort " .. spellfile_path .. " | uniq")
+				spellfile = io.open(spellfile_path, "w")
+				if spellfile then
+					spellfile:write(sorted)
+					spellfile:close()
+				end
+
+				vim.cmd("silent mkspell! " .. spellfile_path)
+				vim.cmd("silent! call spellreload()")
+			end
+		end
+	)
+end
+
 vim.keymap.set("n", "<leader>s", ":setlocal spell!<CR>", { desc = "Toggle spelling" })
 vim.keymap.set("n", "zs", "1z=", { desc = "Replace spelling with top suggestion" })
+vim.keymap.set("n", "zg", function()
+	vim.cmd("normal! yiw")
+	local word = vim.fn.getreg('"')
+	add_to_user_dict(word)
+end)
+vim.keymap.set("x", "zg", function()
+	vim.cmd("normal! y")
+	local word = vim.fn.getreg('"')
+	add_to_user_dict(word)
+end)
 
 -- LSP
 vim.keymap.set("n", "K", function()
