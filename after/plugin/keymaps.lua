@@ -27,16 +27,19 @@ vim.keymap.set("x", "<leader>my", function()
 	local remove_underscores = "sed 's/_/ /g'"
 	local remove_opening_braces = "sed 's/\\[\\[//g'"
 	local remove_closing_braces = "sed 's/\\]\\]//g'"
+	local convert_to_html = "pandoc --from markdown --to html"
+	local set_to_formatted_clipboard = "wl-copy --type text/html"
 
 	local transformed_text = vim.fn.system(remove_underscores, selected_text)
 	transformed_text = vim.fn.system(remove_opening_braces, transformed_text)
 	transformed_text = vim.fn.system(remove_closing_braces, transformed_text)
+	transformed_text = vim.fn.system(convert_to_html, transformed_text)
 
-	vim.fn.setreg("+", transformed_text)
+	vim.fn.system(set_to_formatted_clipboard, transformed_text)
 end, {
-	noremap = true, -- Prevents the mapping from being remapped recursively.
-	silent = true, -- Suppresses the command from being echoed on the command line.
-	desc = "Cleans away markdown decorations and copies to system clipboard",
+	noremap = true,
+	silent = true,
+	desc = "Converts highlighted markdown into formatted html and saves to system clipboard",
 })
 
 -- spelling
