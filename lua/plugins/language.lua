@@ -131,8 +131,8 @@ return {
 		ft = "lua", -- only load on lua files
 		opts = {
 			library = {
-				-- Load luvit types when the `vim.uv` word is found
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				"${3rd}/busted/library",
+				"${3rd}/luassert/library",
 			},
 		},
 	},
