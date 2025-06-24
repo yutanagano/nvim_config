@@ -28,12 +28,16 @@ vim.keymap.set("x", "<leader>my", function()
 	local remove_opening_braces = "sed 's/\\[\\[//g'"
 	local remove_closing_braces = "sed 's/\\]\\]//g'"
 	local convert_to_html = "pandoc --from markdown --to html"
+	local remove_hyperlinks_opening = "sed -z 's/<a[^>]*>//g'"
+	local remove_hyperlinks_closing = "sed -z 's/<\\/a>//g'"
 	local set_to_formatted_clipboard = "wl-copy --type text/html"
 
 	local transformed_text = vim.fn.system(remove_underscores, selected_text)
 	transformed_text = vim.fn.system(remove_opening_braces, transformed_text)
 	transformed_text = vim.fn.system(remove_closing_braces, transformed_text)
 	transformed_text = vim.fn.system(convert_to_html, transformed_text)
+	transformed_text = vim.fn.system(remove_hyperlinks_opening, transformed_text)
+	transformed_text = vim.fn.system(remove_hyperlinks_closing, transformed_text)
 
 	vim.fn.system(set_to_formatted_clipboard, transformed_text)
 end, {
