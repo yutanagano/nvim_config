@@ -50,10 +50,14 @@ end, {
 local function add_to_user_dict(word)
 	local spellfile_path = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 	vim.ui.select(
-		{ "Yes", "No" },
+		{ "Yes", "Yes (ignore case)", "No" },
 		{ prompt = 'Would you like to add "' .. word .. '" to your user dictionary?' },
 		function(choice)
-			if choice == "Yes" then
+			if choice == "Yes" or choice == "Yes (ignore case)" then
+				if choice == "Yes (ignore case)" then
+					word = string.lower(word)
+				end
+
 				local spellfile = io.open(spellfile_path, "a")
 				if spellfile then
 					spellfile:write(word)
@@ -72,6 +76,7 @@ local function add_to_user_dict(word)
 
 				vim.cmd("silent mkspell! " .. spellfile_path)
 				vim.cmd("silent! call spellreload()")
+				vim.notify("Added " .. word .. " to the user dictionary.", vim.log.levels.INFO)
 			end
 		end
 	)
