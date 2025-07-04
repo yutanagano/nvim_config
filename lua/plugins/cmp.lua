@@ -1,6 +1,7 @@
 return {
 	"tpope/vim-sleuth",
-	{ "bullets-vim/bullets.vim", enabled = false },
+	{ "yutanagano/smark.nvim", ft = "markdown", config = true },
+	-- { dir = "~/Projects/smark.nvim", config = true },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
