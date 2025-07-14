@@ -1,6 +1,6 @@
 return {
 	"tpope/vim-sleuth",
-	{ "yutanagano/smark.nvim", ft = "markdown", config = true },
+	{ "yutanagano/smark.nvim", ft = { "markdown", "text" }, config = true },
 	-- { dir = "~/Projects/smark.nvim", config = true },
 	{
 		"windwp/nvim-autopairs",
