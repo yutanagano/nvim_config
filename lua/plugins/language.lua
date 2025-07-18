@@ -8,42 +8,56 @@ local lsp_servers = {
 	--   settings = {},
 	--   on_init = function(client) end,
 	-- },
-	lua_ls = {
-		settings = {
-			Lua = {
-				completion = {
-					callSnippet = "Replace",
-				},
-				diagnostics = {
-					disable = { "missing-fields" },
+	["lua-language-server"] = {
+		alt = "lua_ls",
+		opts = {
+			settings = {
+				Lua = {
+					completion = {
+						callSnippet = "Replace",
+					},
+					diagnostics = {
+						disable = { "missing-fields" },
+					},
 				},
 			},
 		},
 	},
 	pyright = {
-		settings = {
-			python = {
-				analysis = {
-					typeCheckingMode = "off",
+		opts = {
+			settings = {
+				python = {
+					analysis = {
+						typeCheckingMode = "off",
+					},
 				},
 			},
-		},
+		}
 	},
 	texlab = {},
-	markdown_oxide = {
-		capabilities = {
-			workspace = {
-				didChangeWatchedFiles = {
-					dynamicRegistration = true,
+	["markdown-oxide"] = {
+		alt = "markdown_oxide",
+		opts = {
+			capabilities = {
+				workspace = {
+					didChangeWatchedFiles = {
+						dynamicRegistration = true,
+					},
 				},
 			},
-		},
+		}
 	},
 	gopls = {},
-	rust_analyzer = {},
+	["rust-analyzer"] = {
+		alt = "rust_analyzer"
+	},
 	superhtml = {},
-	ts_ls = {},
-	cssls = {},
+	["typescript-language-server"] = {
+		alt = "ts_ls"
+	},
+	["css-lsp"] = {
+		alt = "cssls"
+	},
 }
 
 local formatters = {
@@ -89,22 +103,38 @@ return {
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "williamboman/mason.nvim", lazy = false, config = true },
-			{ "neovim/nvim-lspconfig", lazy = false },
 			"saghen/blink.cmp",
 		},
-		opts = function(_, opts)
-			opts.handlers = opts.handlers or {}
-			table.insert(opts.handlers, function(server_name)
-				local server_settings = lsp_servers[server_name] or {}
+		config = function()
+			for server_name, server_settings in pairs(lsp_servers) do
+				server_name = server_settings.alt or server_name
+				server_settings = server_settings.opts or {}
 				server_settings.capabilities = require("blink.cmp").get_lsp_capabilities(server_settings.capabilities)
-				require("lspconfig")[server_name].setup(server_settings)
-			end)
+				vim.lsp.config(server_name, server_settings)
+				vim.lsp.enable(server_name)
+			end
 		end,
 	},
+	-- {
+	-- 	"williamboman/mason-lspconfig.nvim",
+	-- 	lazy = false,
+	-- 	dependencies = {
+	-- 		{ "williamboman/mason.nvim", lazy = false, config = true },
+	-- 		{ "neovim/nvim-lspconfig", lazy = false },
+	-- 		"saghen/blink.cmp",
+	-- 	},
+	-- 	opts = function(_, opts)
+	-- 		opts.handlers = opts.handlers or {}
+	-- 		table.insert(opts.handlers, function(server_name)
+	-- 			local server_settings = lsp_servers[server_name] or {}
+	-- 			server_settings.capabilities = require("blink.cmp").get_lsp_capabilities(server_settings.capabilities)
+	-- 			vim.lsp.config(server_name, server_settings)
+	-- 			vim.lsp.enable(server_name)
+	-- 		end)
+	-- 	end,
+	-- },
 	{
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
