@@ -32,7 +32,7 @@ local lsp_servers = {
 					},
 				},
 			},
-		}
+		},
 	},
 	texlab = {},
 	["markdown-oxide"] = {
@@ -45,25 +45,27 @@ local lsp_servers = {
 					},
 				},
 			},
-		}
+		},
 	},
 	gopls = {},
 	["rust-analyzer"] = {
-		alt = "rust_analyzer"
+		alt = "rust_analyzer",
 	},
 	superhtml = {},
 	["typescript-language-server"] = {
-		alt = "ts_ls"
+		alt = "ts_ls",
 	},
 	["css-lsp"] = {
-		alt = "cssls"
+		alt = "cssls",
 	},
+	tinymist = {},
 }
 
 local formatters = {
 	"stylua",
 	"ruff",
 	"prettierd",
+	"typstyle",
 }
 
 return {
@@ -117,24 +119,6 @@ return {
 			end
 		end,
 	},
-	-- {
-	-- 	"williamboman/mason-lspconfig.nvim",
-	-- 	lazy = false,
-	-- 	dependencies = {
-	-- 		{ "williamboman/mason.nvim", lazy = false, config = true },
-	-- 		{ "neovim/nvim-lspconfig", lazy = false },
-	-- 		"saghen/blink.cmp",
-	-- 	},
-	-- 	opts = function(_, opts)
-	-- 		opts.handlers = opts.handlers or {}
-	-- 		table.insert(opts.handlers, function(server_name)
-	-- 			local server_settings = lsp_servers[server_name] or {}
-	-- 			server_settings.capabilities = require("blink.cmp").get_lsp_capabilities(server_settings.capabilities)
-	-- 			vim.lsp.config(server_name, server_settings)
-	-- 			vim.lsp.enable(server_name)
-	-- 		end)
-	-- 	end,
-	-- },
 	{
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
@@ -144,6 +128,7 @@ return {
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				markdown = { "prettierd" },
+				typst = { "typstyle" },
 				javascript = { "prettierd" },
 				css = { "prettierd" },
 				scss = { "prettierd" },
