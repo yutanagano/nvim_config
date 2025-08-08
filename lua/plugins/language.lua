@@ -59,6 +59,7 @@ local lsp_servers = {
 		alt = "cssls",
 	},
 	tinymist = {},
+	clangd = {},
 }
 
 local formatters = {
@@ -66,27 +67,35 @@ local formatters = {
 	"ruff",
 	"prettierd",
 	"typstyle",
+	"taplo",
 }
 
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		branch = "main",
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs", -- set .configs as module to run opts on
-		opts = {
-			auto_install = true,
-			highlight = {
-				enable = true,
-				disable = function(_, buf)
-					local max_filesize = 100 * 1024 -- 100 KB
-					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-					if ok and stats and stats.size > max_filesize then
-						return true
-					end
+		config = function(_, opts)
+			local languages = {
+				"python",
+				"lua",
+				"c",
+				"rust",
+				"go",
+				"markdown",
+				"latex",
+				"typst",
+				"toml",
+			}
+			require("nvim-treesitter").install(languages)
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = languages,
+				callback = function()
+					vim.treesitter.start()
 				end,
-			},
-			-- indent = { enable = true },
-		},
+			})
+		end,
 	},
 	{
 		"numToStr/Comment.nvim",
@@ -132,6 +141,7 @@ return {
 				javascript = { "prettierd" },
 				css = { "prettierd" },
 				scss = { "prettierd" },
+				toml = { "taplo" },
 			},
 			default_format_opts = { lsp_format = "fallback" },
 			format_on_save = {
