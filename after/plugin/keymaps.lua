@@ -94,8 +94,3 @@ vim.keymap.set("x", "zg", function()
 	local word = vim.fn.getreg('"')
 	add_to_user_dict(word)
 end)
-
--- LSP
-vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover({ border = "rounded" })
-end, { desc = "Get LSP hover" })

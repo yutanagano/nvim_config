@@ -32,9 +32,7 @@ return {
 			completion = {
 				documentation = {
 					auto_show = true,
-					window = { border = "rounded" },
 				},
-				menu = { border = "rounded" },
 			},
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
