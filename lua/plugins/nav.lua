@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-mini/mini.pick",
 		enabled = true,
-		dependencies = "nvim-mini/mini.icons",
+		dependencies = { "nvim-mini/mini.icons", "nvim-mini/mini.extra" },
 		config = function(_, opts)
 			require("mini.pick").setup(opts)
 			vim.ui.select = function(items, select_opts, on_choice)
@@ -31,6 +31,13 @@ return {
 					require("mini.pick").builtin.buffers()
 				end,
 				desc = "Find buffers",
+			},
+			{
+				"gr",
+				function()
+					require("mini.extra").pickers.lsp({ scope = "references" })
+				end,
+				desc = "Go to references",
 			},
 		},
 	},
