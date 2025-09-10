@@ -87,6 +87,7 @@ return {
 				"latex",
 				"typst",
 				"toml",
+				"yaml",
 			}
 			require("nvim-treesitter").install(languages)
 			vim.api.nvim_create_autocmd("FileType", {
