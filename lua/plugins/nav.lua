@@ -3,6 +3,13 @@ return {
 		"nvim-mini/mini.pick",
 		enabled = true,
 		dependencies = "nvim-mini/mini.icons",
+		config = function(_, opts)
+			require("mini.pick").setup(opts)
+			vim.ui.select = function(items, select_opts, on_choice)
+				local start_opts = { window = { config = { height = #items } } }
+				return require("mini.pick").ui_select(items, select_opts, on_choice, start_opts)
+			end
+		end,
 		keys = {
 			{
 				"<leader>f",
