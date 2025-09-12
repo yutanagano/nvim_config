@@ -3,6 +3,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Hightlight selection on yank",
