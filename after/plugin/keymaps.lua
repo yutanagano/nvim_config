@@ -11,7 +11,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "gh", ":bprev<CR>", { buffer = true })
 	end,
 })
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 
 -- language and refactoring
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Expand diagnostics" })

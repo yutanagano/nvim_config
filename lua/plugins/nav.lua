@@ -1,7 +1,15 @@
 return {
 	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		dependencies = { "nvim-mini/mini.icons" },
+		lazy = false,
+	},
+	{
 		"nvim-mini/mini.pick",
-		enabled = true,
+		lazy = false,
 		dependencies = { "nvim-mini/mini.icons", "nvim-mini/mini.extra" },
 		config = function(_, opts)
 			require("mini.pick").setup(opts)
@@ -19,6 +27,13 @@ return {
 				desc = "Find files",
 			},
 			{
+				"<leader>g",
+				function()
+					require("mini.extra").pickers.git_files()
+				end,
+				desc = "Find git files",
+			},
+			{
 				"<leader>/",
 				function()
 					require("mini.pick").builtin.grep_live()
@@ -31,6 +46,25 @@ return {
 					require("mini.pick").builtin.buffers()
 				end,
 				desc = "Find buffers",
+			},
+			{
+				"gd",
+				function()
+					local function on_list(opts)
+						vim.fn.setqflist({}, " ", opts)
+
+						if #opts.items == 1 then
+							vim.cmd.cfirst()
+						else
+							require("mini.extra").pickers.list(
+								{ scope = "quickfix" },
+								{ source = { name = opts.title } }
+							)
+						end
+					end
+					vim.lsp.buf.definition({ on_list = on_list })
+				end,
+				desc = "Go to definition",
 			},
 			{
 				"gr",
