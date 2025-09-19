@@ -99,10 +99,6 @@ return {
 		end,
 	},
 	{
-		"numToStr/Comment.nvim",
-		config = true,
-	},
-	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		lazy = false,
 		dependencies = {
