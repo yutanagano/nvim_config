@@ -60,6 +60,7 @@ local lsp_servers = {
 	},
 	tinymist = {},
 	clangd = {},
+	esbonio = { no_install = true },
 }
 
 local formatters = {
@@ -88,6 +89,7 @@ return {
 				"typst",
 				"toml",
 				"yaml",
+				"rst",
 			}
 			require("nvim-treesitter").install(languages)
 			vim.api.nvim_create_autocmd("FileType", {
@@ -106,7 +108,13 @@ return {
 		},
 		opts = function(_, opts)
 			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, vim.tbl_keys(lsp_servers))
+
+			for server_name, server_opts in pairs(lsp_servers) do
+				if server_opts.no_install == nil or not server_opts.no_install then
+					table.insert(opts.ensure_installed, server_name)
+				end
+			end
+
 			vim.list_extend(opts.ensure_installed, formatters)
 		end,
 	},
