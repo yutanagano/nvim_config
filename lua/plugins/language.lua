@@ -60,6 +60,7 @@ local lsp_servers = {
 	},
 	tinymist = {},
 	clangd = {},
+	esbonio = {},
 }
 
 local formatters = {
