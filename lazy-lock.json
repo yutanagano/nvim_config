@@ -15,7 +15,6 @@
   "nvim-lspconfig": { "branch": "master", "commit": "2010fc6ec03e2da552b4886fceb2f7bc0fc2e9c0" },
   "nvim-treesitter": { "branch": "main", "commit": "65a266bf693d3fc856dd341c25edea1a0917a30f" },
   "oil.nvim": { "branch": "master", "commit": "7e1cd7703ff2924d7038476dcbc04b950203b902" },
-  "render-markdown.nvim": { "branch": "main", "commit": "a1b2bf029c37397947082f31969b4aec0d1b92bd" },
   "smark.nvim": { "branch": "main", "commit": "b367db9d6b2514937b6dda7b0fedcbf94a5a8ca8" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" }
 }
