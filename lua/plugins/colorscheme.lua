@@ -1,28 +1,35 @@
 return {
 	{
-		"webhooked/kanso.nvim",
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function(_, opts)
-			opts = opts or {}
-			opts.background = {
-				dark = "zen",
-				light = "pearl",
+		opts = function(_, opts)
+			local dragon_colors = require("kanagawa.colors").setup({ theme = "dragon" })
+			opts.colors = {
+				theme = {
+					dragon = {
+						ui = {
+							float = {
+								bg = dragon_colors.theme.ui.bg,
+								bg_border = dragon_colors.theme.ui.bg,
+							},
+							pmenu = {
+								bg = dragon_colors.theme.ui.bg,
+								bg_sel = dragon_colors.theme.ui.bg_p2,
+							},
+						},
+					},
+					all = {
+						ui = {
+							bg_gutter = "none",
+						},
+					},
+				},
 			}
-			require("kanso").setup(opts)
-			vim.cmd("colorscheme kanso")
 		end,
-		keys = {
-			{
-				"<leader>c",
-				function()
-					if vim.o.background == "light" then
-						vim.opt.background = "dark"
-					else
-						vim.opt.background = "light"
-					end
-				end,
-			},
-		},
+		config = function(_, opts)
+			require("kanagawa").setup(opts)
+			vim.cmd("colorscheme kanagawa-dragon")
+		end,
 	},
 }
