@@ -77,7 +77,7 @@ return {
 		lazy = false,
 		branch = "main",
 		build = ":TSUpdate",
-		config = function(_, opts)
+		config = function(_, _)
 			local languages = {
 				"python",
 				"lua",
