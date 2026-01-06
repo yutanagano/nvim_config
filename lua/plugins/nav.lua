@@ -8,70 +8,68 @@ return {
 		lazy = false,
 	},
 	{
-		"nvim-mini/mini.pick",
-		lazy = false,
-		dependencies = { "nvim-mini/mini.icons", "nvim-mini/mini.extra" },
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
+		},
 		config = function(_, opts)
-			require("mini.pick").setup(opts)
-			vim.ui.select = function(items, select_opts, on_choice)
-				local start_opts = { window = { config = { height = #items } } }
-				return require("mini.pick").ui_select(items, select_opts, on_choice, start_opts)
-			end
+			opts.extensions = opts.extensions or {}
+			opts.extensions["ui-select"] = {
+				require("telescope.themes").get_cursor(),
+			}
+			require("telescope").setup(opts)
+			require("telescope").load_extension("ui-select")
 		end,
 		keys = {
 			{
 				"<leader>f",
 				function()
-					require("mini.pick").builtin.files()
+					require("telescope.builtin").find_files()
 				end,
 				desc = "Find files",
 			},
 			{
 				"<leader>g",
 				function()
-					require("mini.extra").pickers.git_files()
+					require("telescope.builtin").git_files()
 				end,
 				desc = "Find git files",
 			},
 			{
 				"<leader>/",
 				function()
-					require("mini.pick").builtin.grep_live()
+					require("telescope.builtin").live_grep()
 				end,
 				desc = "Grep workspace",
 			},
 			{
 				"<leader>b",
 				function()
-					require("mini.pick").builtin.buffers()
+					require("telescope.builtin").buffers()
 				end,
 				desc = "Find buffers",
 			},
 			{
+				"<leader>d",
+				function()
+					require("telescope.builtin").diagnostics()
+				end,
+				desc = "List diagnostics",
+			},
+			{
 				"gd",
 				function()
-					local function on_list(opts)
-						vim.fn.setqflist({}, " ", opts)
-
-						if #opts.items == 1 then
-							vim.cmd.cfirst()
-						else
-							require("mini.extra").pickers.list(
-								{ scope = "quickfix" },
-								{ source = { name = opts.title } }
-							)
-						end
-					end
-					vim.lsp.buf.definition({ on_list = on_list })
+					require("telescope.builtin").lsp_definitions()
 				end,
-				desc = "Go to definition",
+				desc = "Go to definition(s)",
 			},
 			{
 				"gr",
 				function()
-					require("mini.extra").pickers.lsp({ scope = "references" })
+					require("telescope.builtin").lsp_references()
 				end,
-				desc = "Go to references",
+				desc = "Go to reference(s)",
 			},
 		},
 	},
