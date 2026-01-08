@@ -19,11 +19,6 @@ return {
 							},
 						},
 					},
-					-- all = {
-					-- 	ui = {
-					-- 		bg_gutter = "none",
-					-- 	},
-					-- },
 				},
 			}
 		end,
