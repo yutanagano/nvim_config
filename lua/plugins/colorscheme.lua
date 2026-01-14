@@ -1,11 +1,30 @@
 return {
 	{
-		"zenbones-theme/zenbones.nvim",
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			vim.g.zenbones_compat = 1
-			vim.cmd.colorscheme("zenbones")
+		opts = function(_, opts)
+			local dragon_colors = require("kanagawa.colors").setup({ theme = "dragon" })
+			opts.colors = {
+				theme = {
+					dragon = {
+						ui = {
+							float = {
+								bg = dragon_colors.theme.ui.bg,
+								bg_border = dragon_colors.theme.ui.bg,
+							},
+							pmenu = {
+								bg = dragon_colors.theme.ui.bg,
+								bg_sel = dragon_colors.theme.ui.bg_p2,
+							},
+						},
+					},
+				},
+			}
+		end,
+		config = function(_, opts)
+			require("kanagawa").setup(opts)
+			vim.cmd("colorscheme kanagawa-dragon")
 		end,
 	},
 }
