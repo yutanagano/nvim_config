@@ -4,6 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
+vim.opt.mouse = ""
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Hightlight selection on yank",
@@ -11,7 +12,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.hl.on_yank({ timeout = 100 })
 	end,
 })
---
+
 -- indent
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
