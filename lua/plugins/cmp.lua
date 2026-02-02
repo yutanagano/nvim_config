@@ -16,6 +16,40 @@ return {
 		dependencies = { "L3MON4D3/LuaSnip" },
 		version = "1.*",
 		opts = {
+			appearance = {
+				kind_icons = {
+					Text = "Txt",
+					Method = "Met",
+					Function = "Fun",
+					Constructor = "Con",
+
+					Field = "Fld",
+					Variable = "Var",
+					Property = "Pro",
+
+					Class = "Cls",
+					Interface = "Int",
+					Struct = "Str",
+					Module = "Mod",
+
+					Unit = "Unt",
+					Value = "Val",
+					Enum = "Enu",
+					EnumMember = "Enm",
+
+					Keyword = "Kwd",
+					Constant = "Cst",
+
+					Snippet = "Snp",
+					Color = "Clr",
+					File = "Fil",
+					Reference = "Ref",
+					Folder = "Dir",
+					Event = "Evt",
+					Operator = "Opr",
+					TypeParameter = "Typ",
+				},
+			},
 			keymap = {
 				preset = "default",
 				["<Tab>"] = {},
