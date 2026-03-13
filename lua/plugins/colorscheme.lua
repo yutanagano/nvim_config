@@ -1,30 +1,11 @@
 return {
 	{
-		"rebelot/kanagawa.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = function(_, opts)
-			local dragon_colors = require("kanagawa.colors").setup({ theme = "dragon" })
-			opts.colors = {
-				theme = {
-					dragon = {
-						ui = {
-							float = {
-								bg = dragon_colors.theme.ui.bg,
-								bg_border = dragon_colors.theme.ui.bg,
-							},
-							pmenu = {
-								bg = dragon_colors.theme.ui.bg,
-								bg_sel = dragon_colors.theme.ui.bg_p2,
-							},
-						},
-					},
-				},
-			}
-		end,
-		config = function(_, opts)
-			require("kanagawa").setup(opts)
-			vim.cmd("colorscheme kanagawa-dragon")
+		"oskarnurm/koda.nvim",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			-- require("koda").setup({ transparent = true })
+			vim.cmd("colorscheme koda")
 		end,
 	},
 }
