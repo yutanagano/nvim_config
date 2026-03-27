@@ -144,6 +144,7 @@ return {
 				markdown = { "prettierd" },
 				typst = { "typstyle" },
 				javascript = { "prettierd" },
+				typescript = { "prettierd" },
 				css = { "prettierd" },
 				scss = { "prettierd" },
 				toml = { "taplo" },
