@@ -50,6 +50,13 @@ local lsp_servers = {
 	gopls = {},
 	["rust-analyzer"] = {
 		alt = "rust_analyzer",
+		opts = {
+			settings = {
+				["rust-analyzer"] = {
+					check = { command = "clippy" },
+				},
+			},
+		},
 	},
 	superhtml = {},
 	["typescript-language-server"] = {
