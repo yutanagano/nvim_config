@@ -6,6 +6,12 @@ return {
 		config = function()
 			-- require("koda").setup({ transparent = true })
 			vim.cmd("colorscheme koda")
+			vim.api.nvim_create_autocmd("OptionSet", {
+				pattern = "background",
+				callback = function()
+					vim.cmd("colorscheme koda")
+				end,
+			})
 		end,
 	},
 }
