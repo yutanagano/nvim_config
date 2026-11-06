@@ -16,6 +16,10 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Expand diagnostics" })
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set("n", "<leader>t", function()
+	vim.b.format_on_save = vim.b.format_on_save == false
+	vim.notify("Format on save: " .. (vim.b.format_on_save and "ON" or "OFF"))
+end, { desc = "Toggle format on save" })
 
 -- yanking and pasting
 vim.keymap.set("x", "<leader>y", '"+y', { desc = "Yank to clipboard" })

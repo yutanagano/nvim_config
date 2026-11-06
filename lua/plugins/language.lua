@@ -156,10 +156,13 @@ return {
 				scss = { "prettierd" },
 				toml = { "taplo" },
 			},
-			default_format_opts = { lsp_format = "fallback" },
-			format_on_save = {
-				timeout_ms = 500,
-			},
+			default_format_opts = { lsp_format = "fallback", timeout_ms = 500 },
+			format_on_save = function(bufnr)
+				if vim.b[bufnr].format_on_save == false then
+					return false
+				end
+				return {}
+			end,
 		},
 	},
 	{
